@@ -1,0 +1,3134 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title id="pageTitle">APLIKASI MODUL AJAR</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- LOGIN PAGE -->
+    <div id="login-page">
+      <div class="login-left">
+        <div class="login-left-overlay"></div>
+      </div>
+      <div class="login-right">
+        <div class="login-card">
+          <div class="school-logo-container">
+            <img
+              id="loginLogo"
+              src=""
+              alt="Logo Sekolah"
+              class="school-logo-img"
+            />
+          </div>
+          <h2 id="loginRightSchoolName" class="login-title-school">
+            NAMA SEKOLAH
+          </h2>
+          <h2 class="login-title">Selamat Datang</h2>
+          <p class="login-subtitle">Silakan login untuk mengakses modul ajar</p>
+
+          <form id="loginForm">
+            <div class="form-group">
+              <label for="loginUsername">Username</label>
+              <input
+                type="text"
+                id="loginUsername"
+                class="form-input"
+                placeholder="Masukkan username"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="loginPassword">Password</label>
+              <input
+                type="password"
+                id="loginPassword"
+                class="form-input"
+                placeholder="Masukkan password"
+                required
+              />
+            </div>
+            <button type="submit" class="btn-login">
+              <i class="fas fa-sign-in-alt"></i> Masuk
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- DASHBOARD (Hidden by default) -->
+    <div id="dashboard" class="container" style="display: none">
+      <!-- Header -->
+      <header class="header">
+        <div class="header-left">
+          <img id="headerLogo" src="" alt="Logo Sekolah" class="header-logo" />
+          <div class="header-info">
+            <h1 id="headerAppTitle">APLIKASI MODUL AJAR</h1>
+            <p id="headerSchoolName">NAMA SEKOLAH</p>
+            <p>Aplikasi Pembelajaran Kurikulum Merdeka</p>
+          </div>
+        </div>
+        <div class="header-right">
+          <div class="user-display">
+            <i class="fas fa-user-circle"></i>
+            <span id="displayUsername">User</span>
+          </div>
+          <!-- TOMBOL LOGOUT DI PINDAHKAN KE HEADER GLOBAL AGAR SELALU MUNCUL -->
+          <button class="btn-logout-main" onclick="handleLogout()">
+            <i class="fas fa-power-off"></i> LOGOUT
+          </button>
+        </div>
+      </header>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <!-- SECTION: MENU UTAMA -->
+        <section id="menuSection">
+          <h2
+            style="
+              font-size: 24px;
+              color: var(--text-dark);
+              margin-bottom: 20px;
+            "
+          >
+            <i
+              class="fas fa-th-large"
+              style="color: var(--secondary-color)"
+            ></i>
+            Menu Utama
+          </h2>
+
+          <div class="menu-grid">
+            <button class="menu-button red" onclick="openBahasaIndonesiaMenu()">
+              <div class="menu-icon-wrapper">
+                <i class="fas fa-book-open"></i>
+              </div>
+              <span>Bahasa Indonesia</span>
+            </button>
+            <button class="menu-button blue" onclick="openMatematikaMenu()">
+              <div class="menu-icon-wrapper">
+                <i class="fas fa-square-root-alt"></i>
+              </div>
+              <span>Matematika</span>
+            </button>
+            <button class="menu-button yellow" onclick="openPancasilaMenu()">
+              <div class="menu-icon-wrapper">
+                <i class="fas fa-yin-yang"></i>
+              </div>
+              <span>Pendidikan Pancasila</span>
+            </button>
+            <button class="menu-button green" onclick="openIPASMenu()">
+              <div class="menu-icon-wrapper"><i class="fas fa-atom"></i></div>
+              <span>IPAS</span>
+            </button>
+            <button
+              class="menu-button purple"
+              onclick="openBahasaInggrisMenu()"
+            >
+              <div class="menu-icon-wrapper">
+                <i class="fas fa-globe-americas"></i>
+              </div>
+              <span>Bahasa Inggris</span>
+            </button>
+            <button class="menu-button pink" onclick="openSeniRupaMenu()">
+              <div class="menu-icon-wrapper">
+                <i class="fas fa-paint-brush"></i>
+              </div>
+              <span>Seni Rupa</span>
+            </button>
+            <button
+              class="menu-button teal"
+              onclick="openKalenderPendidikanMenu()"
+            >
+              <div class="menu-icon-wrapper">
+                <i class="fas fa-calendar-alt"></i>
+              </div>
+              <span>Kalender Pendidikan</span>
+            </button>
+            <button
+              id="btnPengaturan"
+              class="menu-button dark-gray"
+              onclick="openModule('pengaturan')"
+            >
+              <div class="menu-icon-wrapper">
+                <i class="fas fa-sliders-h"></i>
+              </div>
+              <span>Pengaturan</span>
+            </button>
+          </div>
+        </section>
+
+        <!-- BAHASA INDONESIA SECTION (FULL RESTORED) -->
+        <section
+          class="form-section"
+          id="bahasaIndonesiaSection"
+          style="display: none"
+        >
+          <div class="submenu-container">
+            <h2 class="form-title">
+              <i class="fas fa-book-open"></i> Menu Bahasa Indonesia
+            </h2>
+            <div class="submenu-grid">
+              <div class="submenu-group">
+                <h3><i class="fas fa-clock"></i> Analisa Alokasi Waktu</h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-indonesia/analisa-alokasi-waktu/semester 1.html"
+                      onclick="openLink(this.dataset.file, 'Analisa Alokasi Waktu Semester 1')"
+                      >Analisa Alokasi Waktu Semester 1</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-indonesia/analisa-alokasi-waktu/semester 2.html"
+                      onclick="openLink(this.dataset.file, 'Analisa Alokasi Waktu Semester 2')"
+                      >Analisa Alokasi Waktu Semester 2</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="submenu-group">
+                <h3><i class="fas fa-list-ol"></i> Alur Tujuan Pembelajaran</h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-indonesia/atp/ATP_INDO_KLS 6.html"
+                      onclick="openLink(this.dataset.file, 'Atp')"
+                      >Alur Tujuan Pembelajaran</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="submenu-group">
+                <h3><i class="fas fa-bullseye"></i> Capaian Pembelajaran</h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-indonesia/cp/CP_INDO_KLS 6.html"
+                      onclick="openLink(this.dataset.file, 'Cp')"
+                      >Capaian Pembelajaran</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="submenu-group">
+                <h3>
+                  <i class="fas fa-file-alt"></i> Format Lampiran Penilaian
+                </h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-indonesia/format-lampiran-penilaian/01. Format Penilaian Antar teman 2 Jawaban.html"
+                      onclick="openLink(this.dataset.file, 'Format Lamp. Penilaian 2 Jawaban')"
+                      >Format Lamp. Penilaian 2 Jawaban</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-indonesia/format-lampiran-penilaian/03. Format Penilaian Antar teman Empat Jawaban.html"
+                      onclick="openLink(this.dataset.file, 'Format Lamp. Penilaian 4 jawaban')"
+                      >Format Lamp. Penilaian 4 jawaban</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-indonesia/format-lampiran-penilaian/03. Instrumen Penilaian Tes Lisan.html"
+                      onclick="openLink(this.dataset.file, 'Instrumen Penilaian Tes Lisan')"
+                      >Instrumen Penilaian Tes Lisan</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-indonesia/format-lampiran-penilaian/04. Jurnal Perkembangan Sikap Sosial oleh Wali Kelas dan Guru BK.html"
+                      onclick="openLink(this.dataset.file, 'Format Lampiran Penilaian')"
+                      >Jurnal Perkembangan Sikap Sosial Oleh Wali Kelas/Guru</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-indonesia/format-lampiran-penilaian/05. Jurnal Perkembangan Sikap Spiritual  (Observasi Tebuka).html"
+                      onclick="openLink(this.dataset.file, 'Format Lampiran Penilaian')"
+                      >Jurnal Perkembangan Sikap Spritual (Terbuka)</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-indonesia/format-lampiran-penilaian/06. Jurnal Perkembangan Sikap Spiritual  (Observasi Tertutup).html"
+                      onclick="openLink(this.dataset.file, 'Format Lampiran Penilaian')"
+                      >Jurnal Perkembangan Sikap Spritual (Tertutup)</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-indonesia/format-lampiran-penilaian/07. Jurnal Perkembangan Sikap Spiritual dan Sosial oleh Wali Kelas dan Guru BK.html"
+                      onclick="openLink(this.dataset.file, 'Format Lampiran Penilaian')"
+                      >Jurnal Perkembangan Sikap Spritual dan Sosial</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-indonesia/format-lampiran-penilaian/08. Jurnal Perkembangan Sikap Spiritual oleh Wali Kelas dan Guru BK.html"
+                      onclick="openLink(this.dataset.file, 'Format Lampiran Penilaian')"
+                      >Jurnal Perkembangan Sikap Spritual Oleh Wali Kelas</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-indonesia/format-lampiran-penilaian/09. Jurnal Sikap Spiritual dan Sosial oleh Pendidik.html"
+                      onclick="openLink(this.dataset.file, 'Format Lampiran Penilaian')"
+                      >Jurnal Perkembangan Sikap Spritual dan Sosial Oleh
+                      Pendidik</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-indonesia/format-lampiran-penilaian/10. Kisi-kisi Penilaian Praktik Diskusi.html"
+                      onclick="openLink(this.dataset.file, 'Format Lampiran Penilaian')"
+                      >Kisi-kisi Penilaian Praktik Diskusi</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-indonesia/format-lampiran-penilaian/11. Kisi-kisi Penilaian Praktik.html"
+                      onclick="openLink(this.dataset.file, 'Format Lampiran Penilaian')"
+                      >Kisi-kisi Penilaian Praktik</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-indonesia/format-lampiran-penilaian/12. Kisi-kisi Penilaian Produk.html"
+                      onclick="openLink(this.dataset.file, 'Format Lampiran Penilaian')"
+                      >Kisi-kisi Penilaian Produk</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-indonesia/format-lampiran-penilaian/13. Kisi-Kisi Penilaian Proyek.html"
+                      onclick="openLink(this.dataset.file, 'Format Lampiran Penilaian')"
+                      >Kisi-kisi Penilaian Proyek</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-indonesia/format-lampiran-penilaian/14. Kisi-Kisi Tugas.html"
+                      onclick="openLink(this.dataset.file, 'Format Lampiran Penilaian')"
+                      >Kisi-kisi Tugas</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-indonesia/format-lampiran-penilaian/15. Lampiran Portofolio.html"
+                      onclick="openLink(this.dataset.file, 'Format Lampiran Penilaian')"
+                      >Lampiran Portofolio</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-indonesia/format-lampiran-penilaian/16. Lembar Penilaian Diri Peserta didik dengan Dua Jawaban.html"
+                      onclick="openLink(this.dataset.file, 'Format Lampiran Penilaian')"
+                      >Lembar Penilaian Diri Peserta didik dgn 2 jwban</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-indonesia/format-lampiran-penilaian/17. Lembar Penilaian Diri Peserta didik dengan Empat Jawaban.html"
+                      onclick="openLink(this.dataset.file, 'Format Lampiran Penilaian')"
+                      >Lembar Penilaian Diri Peserta didik dgn 4 jwban</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-indonesia/format-lampiran-penilaian/18. Tes Tertulis.html"
+                      onclick="openLink(this.dataset.file, 'Format Lampiran Penilaian')"
+                      >Tes Terulis</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="submenu-group">
+                <h3><i class="fas fa-book"></i> Jurnal Harian Kelas</h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-indonesia/jurnal-harian-kelas/JURNAL_INDO_KLS 6.html"
+                      onclick="openLink(this.dataset.file, 'Jurnal Harian')"
+                      >Jurnal Harian</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="submenu-group">
+                <h3>
+                  <i class="fas fa-chalkboard-teacher"></i> Kriteria
+                  Ketercapaian Pembelajaran
+                </h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-indonesia/KKTP/KKTP_INDO_KLS 6.html"
+                      onclick="openLink(this.dataset.file, 'Kktp')"
+                      >Kriteria Ketercapaian Pembelajaran</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="submenu-group">
+                <h3><i class="fas fa-tasks"></i> Lembar Kerja Peserta Didik</h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-indonesia/lkpd/LKPD_INDO_KLS 6_BAB 1.html"
+                      onclick="openLink(this.dataset.file, 'Lkpd Bab 1')"
+                      >Lembar Kerja Peserta Didik Bab 1</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-indonesia/lkpd/LKPD_INDO_KLS 6_BAB 2.html"
+                      onclick="openLink(this.dataset.file, 'Lkpd Bab 2')"
+                      >Lembar Kerja Peserta Didik Bab 2</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-indonesia/lkpd/LKPD_INDO_KLS 6_BAB 3.html"
+                      onclick="openLink(this.dataset.file, 'Lkpd Bab 3')"
+                      >Lembar Kerja Peserta Didik Bab 3</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-indonesia/lkpd/LKPD_INDO_KLS 6_BAB 4.html"
+                      onclick="openLink(this.dataset.file, 'Lkpd Bab 4')"
+                      >Lembar Kerja Peserta Didik Bab 4</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-indonesia/lkpd/LKPD_INDO_KLS 6_BAB 5.html"
+                      onclick="openLink(this.dataset.file, 'Lkpd Bab 5')"
+                      >Lembar Kerja Peserta Didik Bab 5</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-indonesia/lkpd/LKPD_INDO_KLS 6_BAB 6.html"
+                      onclick="openLink(this.dataset.file, 'Lkpd Bab 6')"
+                      >Lembar Kerja Peserta Didik Bab 6</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-indonesia/lkpd/LKPD_INDO_KLS 6_BAB 7.html"
+                      onclick="openLink(this.dataset.file, 'Lkpd Bab 7')"
+                      >Lembar Kerja Peserta Didik Bab 7</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-indonesia/lkpd/LKPD_INDO_KLS 6_BAB 8.html"
+                      onclick="openLink(this.dataset.file, 'Lkpd Bab 8')"
+                      >Lembar Kerja Peserta Didik Bab 8</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="submenu-group">
+                <h3><i class="fas fa-book-open"></i> Modul Ajar</h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-indonesia/modul-ajar/B INDO_KLS 6_BAB 1.html"
+                      onclick="openLink(this.dataset.file, 'Modul Ajar Bab 1')"
+                      >Modul Ajar Bab 1</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-indonesia/modul-ajar/B INDO_KLS 6_BAB 2.html"
+                      onclick="openLink(this.dataset.file, 'Modul Ajar Bab 2')"
+                      >Modul Ajar Bab 2</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-indonesia/modul-ajar/B INDO_KLS 6_BAB 3.html"
+                      onclick="openLink(this.dataset.file, 'Modul Ajar Bab 3')"
+                      >Modul Ajar Bab 3</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-indonesia/modul-ajar/B INDO_KLS 6_BAB 4.html"
+                      onclick="openLink(this.dataset.file, 'Modul Ajar Bab 4')"
+                      >Modul Ajar Bab 4</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-indonesia/modul-ajar/B INDO_KLS 6_BAB 5.html"
+                      onclick="openLink(this.dataset.file, 'Modul Ajar Bab 5')"
+                      >Modul Ajar Bab 5</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-indonesia/modul-ajar/B INDO_KLS 6_BAB 6.html"
+                      onclick="openLink(this.dataset.file, 'Modul Ajar Bab 6')"
+                      >Modul Ajar Bab 6</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-indonesia/modul-ajar/B INDO_KLS 6_BAB 7.html"
+                      onclick="openLink(this.dataset.file, 'Modul Ajar Bab 7')"
+                      >Modul Ajar Bab 7</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-indonesia/modul-ajar/B INDO_KLS 6_BAB 8.html"
+                      onclick="openLink(this.dataset.file, 'Modul Ajar Bab 8')"
+                      >Modul Ajar Bab 8</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="submenu-group">
+                <h3><i class="fas fa-clipboard-check"></i> Penilaian Harian</h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-indonesia/penilaian-harian/Penilaian Harian Kelas 6.htm"
+                      onclick="openLink(this.dataset.file, 'Penilaian Harian')"
+                      >Penilaian Harian</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="submenu-group">
+                <h3><i class="fas fa-calendar-alt"></i> Program Semester</h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-indonesia/prosem/PROSEM_INDO_KLS 6.htm"
+                      onclick="openLink(this.dataset.file, 'Prosem')"
+                      >Program Semester</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="submenu-group">
+                <h3><i class="fas fa-calendar-week"></i> Program Tahunan</h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-indonesia/prota/PROTA_INDO_KLS 6.htm"
+                      onclick="openLink(this.dataset.file, 'Prota')"
+                      >Program Tahunan</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="submenu-group">
+                <h3><i class="fas fa-question-circle"></i> Soal Latihan</h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-indonesia/Soal Latihan/KISI - KISI SAS.htm"
+                      onclick="openLink(this.dataset.file, 'Kisi-kisi Sas')"
+                      >Kisi-kisi Sas</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-indonesia/Soal Latihan/KISI - KISI STS.htm"
+                      onclick="openLink(this.dataset.file, 'Kisi-kisi Sts')"
+                      >Kisi-kisi Sts</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-indonesia/Soal Latihan/SAS.html"
+                      onclick="openLink(this.dataset.file, 'Sas')"
+                      >Sas</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-indonesia/Soal Latihan/STS.html"
+                      onclick="openLink(this.dataset.file, 'Sts')"
+                      >Sts</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                onclick="backToMenu()"
+              >
+                <i class="fas fa-arrow-left"></i> Kembali
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- MATEMATIKA SECTION (FULL RESTORED) -->
+        <section
+          class="form-section"
+          id="matematikaSection"
+          style="display: none"
+        >
+          <div class="submenu-container">
+            <h2 class="form-title">
+              <i class="fas fa-square-root-alt"></i> Menu Matematika
+            </h2>
+            <div class="submenu-grid">
+              <div class="submenu-group">
+                <h3><i class="fas fa-clock"></i> Analisa Alokasi Waktu</h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/matematika/analisa-alokasi-waktu/Analisis Alokasi Waktu Semester 1.html"
+                      onclick="openLink(this.dataset.file, 'Analisa Alokasi Waktu - Semester 1')"
+                      >Semester 1</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/matematika/analisa-alokasi-waktu/Analisis Alokasi Waktu Semester 2.html"
+                      onclick="openLink(this.dataset.file, 'Analisa Alokasi Waktu - Semester 2')"
+                      >Semester 2</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="submenu-group">
+                <h3><i class="fas fa-list-ol"></i> Alur Tujuan Pembelajaran</h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/matematika/atp/ATP_MTK_KLS 6.html"
+                      onclick="openLink(this.dataset.file, 'Alur Tujuan Pembelajaran')"
+                      >Alur Tujuan Pembelajaran</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="submenu-group">
+                <h3><i class="fas fa-book"></i> Buku Penggerak IKM</h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/matematika/buku-penggerak-ikm/Matematika_BG_KLS_VI.pdf"
+                      onclick="openLink(this.dataset.file, 'Matematika Buku Guru')"
+                      >Matematika Buku Guru</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="submenu-group">
+                <h3><i class="fas fa-bullseye"></i> Capaian Pembelajaran</h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/matematika/cp/CP_MTK_KLS 6.html"
+                      onclick="openLink(this.dataset.file, 'Capaian Pembelajaran')"
+                      >Capaian Pembelajaran</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="submenu-group">
+                <h3>
+                  <i class="fas fa-file-alt"></i> Format Lampiran Penilaian
+                </h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/matematika/format-lampiran-penilaian/01. Format Penilaian Antar teman 2 Jawaban.html"
+                      onclick="openLink(this.dataset.file, 'Format Penilaian Antar Teman 2 Jawaban')"
+                      >Format Penilaian Antar Teman 2 Jawaban</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/matematika/format-lampiran-penilaian/03. Format Penilaian Antar teman Empat Jawaban.html"
+                      onclick="openLink(this.dataset.file, 'Format Penilaian Antar Teman 4 jawaban')"
+                      >Format Penilaian Antar Teman 4 jawaban</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/matematika/format-lampiran-penilaian/03. Instrumen Penilaian Tes Lisan.html"
+                      onclick="openLink(this.dataset.file, 'Instrumen Penilaian Tes Lisan')"
+                      >Instrumen Penilaian Tes Lisan</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/matematika/format-lampiran-penilaian/04. Jurnal Perkembangan Sikap Sosial oleh Wali Kelas dan Guru BK.html"
+                      onclick="openLink(this.dataset.file, 'Jurnal Perkembangan Sikap Sosial Oleh Wali Kelas/Guru')"
+                      >Jurnal Perkembangan Sikap Sosial Oleh Wali Kelas/Guru</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/matematika/format-lampiran-penilaian/05. Jurnal Perkembangan Sikap Spiritual  (Observasi Tebuka).html"
+                      onclick="openLink(this.dataset.file, 'Jurnal Perkembangan Sikap Spiritual (Observasi Tebuka)')"
+                      >Jurnal Perkembangan Sikap Spiritual (Observasi Tebuka)</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/matematika/format-lampiran-penilaian/06. Jurnal Perkembangan Sikap Spiritual  (Observasi Tertutup).html"
+                      onclick="openLink(this.dataset.file, 'Jurnal Perkembangan Sikap Spiritual (Observasi Tertutup)')"
+                      >Jurnal Perkembangan Sikap Spiritual (Observasi
+                      Tertutup)</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/matematika/format-lampiran-penilaian/07. Jurnal Perkembangan Sikap Spiritual dan Sosial oleh Wali Kelas dan Guru BK.html"
+                      onclick="openLink(this.dataset.file, 'Jurnal Perkembangan Sikap Spiritual & Sosial oleh Wali Kelas/Guru')"
+                      >Jurnal Perkembangan Sikap Spiritual & Sosial oleh Wali
+                      Kelas/Guru</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/matematika/format-lampiran-penilaian/08. Jurnal Perkembangan Sikap Spiritual oleh Wali Kelas dan Guru BK.html"
+                      onclick="openLink(this.dataset.file, 'Jurnal Perkembangan Sikap Spiritual oleh Wali & Guru')"
+                      >Jurnal Perkembangan Sikap Spiritual oleh Wali & Guru</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/matematika/format-lampiran-penilaian/09. Jurnal Sikap Spiritual dan Sosial oleh Pendidik.html"
+                      onclick="openLink(this.dataset.file, 'Jurnal Sikap Spiritual dan Sosial oleh Pendidik')"
+                      >Jurnal Sikap Spiritual dan Sosial oleh Pendidik</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/matematika/format-lampiran-penilaian/10. Kisi-kisi Penilaian Praktik Diskusi.html"
+                      onclick="openLink(this.dataset.file, 'Kisi-kisi Penilaian Praktik Diskusi')"
+                      >Kisi-kisi Penilaian Praktik Diskusi</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/matematika/format-lampiran-penilaian/11. Kisi-kisi Penilaian Praktik.html"
+                      onclick="openLink(this.dataset.file, 'Kisi-kisi Penilaian Praktik')"
+                      >Kisi-kisi Penilaian Praktik</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/matematika/format-lampiran-penilaian/12. Kisi-kisi Penilaian Produk.html"
+                      onclick="openLink(this.dataset.file, 'Kisi-kisi Penilaian Produk')"
+                      >Kisi-kisi Penilaian Produk</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/matematika/format-lampiran-penilaian/13. Kisi-Kisi Penilaian Proyek.html"
+                      onclick="openLink(this.dataset.file, 'Kisi-Kisi Penilaian Proyek')"
+                      >Kisi-Kisi Penilaian Proyek</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/matematika/format-lampiran-penilaian/14. Kisi-Kisi Tugas.html"
+                      onclick="openLink(this.dataset.file, 'Kisi-Kisi Tugas')"
+                      >Kisi-Kisi Tugas</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/matematika/format-lampiran-penilaian/15. Lampiran Portofolio.html"
+                      onclick="openLink(this.dataset.file, 'Lampiran Portofolio')"
+                      >Lampiran Portofolio</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/matematika/format-lampiran-penilaian/16. Lembar Penilaian Diri Peserta didik dengan Dua Jawaban.html"
+                      onclick="openLink(this.dataset.file, 'Lembar Penilaian Diri Peserta didik dengan Dua Jawaban')"
+                      >Lembar Penilaian Diri Peserta didik dengan Dua Jawaban</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/matematika/format-lampiran-penilaian/17. Lembar Penilaian Diri Peserta didik dengan Empat Jawaban.html"
+                      onclick="openLink(this.dataset.file, 'Lembar Penilaian Diri Peserta didik dengan Empat Jawaban')"
+                      >Lembar Penilaian Diri Peserta didik dengan Empat
+                      Jawaban</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/matematika/format-lampiran-penilaian/18. Tes Tertulis.html"
+                      onclick="openLink(this.dataset.file, 'Tes Tertulis')"
+                      >Tes Tertulis</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="submenu-group">
+                <h3><i class="fas fa-book"></i> Jurnal Harian Mengajar</h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/matematika/jurnal-mengajar-harian/JURNAL_MTK_KLS 6.html"
+                      onclick="openLink(this.dataset.file, 'Jurnal Harian Mengajar')"
+                      >Jurnal Harian Mengajar</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="submenu-group">
+                <h3>
+                  <i class="fas fa-chalkboard-teacher"></i> Kriteria Ketercapain
+                  Tujuan Pembelajaran
+                </h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/matematika/kktp/KKTP_MTK_KLS 6.html"
+                      onclick="openLink(this.dataset.file, 'Kriteria Ketercapain Tujuan Pembelajaran')"
+                      >Kriteria Ketercapain Tujuan Pembelajaran</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="submenu-group">
+                <h3><i class="fas fa-tasks"></i> Lembar Kerja Peserta didik</h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/matematika/lkpd/LKPD_6_MTK_BAB 1.html"
+                      onclick="openLink(this.dataset.file, 'Lembar Kerja Peserta didik Bab 1')"
+                      >Lembar Kerja Peserta didik Bab 1</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/matematika/lkpd/LKPD_6_MTK_BAB 2.html"
+                      onclick="openLink(this.dataset.file, 'Lembar Kerja Peserta didik Bab 2')"
+                      >Lembar Kerja Peserta didik Bab 2</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/matematika/lkpd/LKPD_6_MTK_BAB 3.html"
+                      onclick="openLink(this.dataset.file, 'Lembar Kerja Peserta didik Bab 3')"
+                      >Lembar Kerja Peserta didik Bab 3</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/matematika/lkpd/LKPD_6_MTK_BAB 4.html"
+                      onclick="openLink(this.dataset.file, 'Lembar Kerja Peserta didik Bab 4')"
+                      >Lembar Kerja Peserta didik Bab 4</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="submenu-group">
+                <h3><i class="fas fa-book-open"></i> Modul Ajar</h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/matematika/modul-ajar/KLS 6_MATK_BAB 1.html"
+                      onclick="openLink(this.dataset.file, 'Modul Ajar Bab 1')"
+                      >Modul Ajar Bab 1</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/matematika/modul-ajar/KLS 6_MATK_BAB 2.html"
+                      onclick="openLink(this.dataset.file, 'Modul Ajar Bab 2')"
+                      >Modul Ajar Bab 2</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/matematika/modul-ajar/KLS 6_MATK_BAB 3.html"
+                      onclick="openLink(this.dataset.file, 'Modul Ajar Bab 3')"
+                      >Modul Ajar Bab 3</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/matematika/modul-ajar/KLS 6_MATK_BAB 4.html"
+                      onclick="openLink(this.dataset.file, 'Modul Ajar Bab 4')"
+                      >Modul Ajar Bab 4</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="submenu-group">
+                <h3><i class="fas fa-clipboard-check"></i> Penilaian Harian</h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/matematika/penilaian-harian/Penilaian Harian Kelas 6.htm"
+                      onclick="openLink(this.dataset.file, 'Penilaian Harian')"
+                      >Penilaian Harian</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="submenu-group">
+                <h3><i class="fas fa-calendar-alt"></i> Program Semester</h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/matematika/prosem/PROSEM_MTK_KLS 6.html"
+                      onclick="openLink(this.dataset.file, 'Program Semester')"
+                      >Program Semester</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="submenu-group">
+                <h3><i class="fas fa-calendar-week"></i> Program Tahunan</h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/matematika/prota/PROTA_MTK_KLS 6.html"
+                      onclick="openLink(this.dataset.file, 'Program Tahunan')"
+                      >Program Tahunan</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="submenu-group">
+                <h3><i class="fas fa-question-circle"></i> Soal Latihan</h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/matematika/soal-latihan/KISI - KISI SAS.html"
+                      onclick="openLink(this.dataset.file, 'Kisi-kisi Sas')"
+                      >Kisi-kisi Sas</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/matematika/soal-latihan/KISI - KISI STS.html"
+                      onclick="openLink(this.dataset.file, 'Kisi-kisi Sts')"
+                      >Kisi-kisi Sts</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/matematika/soal-latihan/SAS.html"
+                      onclick="openLink(this.dataset.file, 'SAS')"
+                      >SAS</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/matematika/soal-latihan/STS.html"
+                      onclick="openLink(this.dataset.file, 'STS')"
+                      >STS</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                onclick="backToMenu()"
+              >
+                <i class="fas fa-arrow-left"></i> Kembali
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- PENDIDIKAN PANCASILA SECTION (FULL RESTORED) -->
+        <section
+          class="form-section"
+          id="pancasilaSection"
+          style="display: none"
+        >
+          <div class="submenu-container">
+            <h2 class="form-title">
+              <i class="fas fa-yin-yang"></i> Menu Pendidikan Pancasila
+            </h2>
+            <div class="submenu-grid">
+              <div class="submenu-group">
+                <h3><i class="fas fa-clock"></i> Analisa Alokasi Waktu</h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/pendidikan-pancasila/analisa-alokasi-waktu/Analisis Alokasi Waktu Semester 1.html"
+                      onclick="openLink(this.dataset.file, 'Analisa Alokasi Waktu - Semester 1')"
+                      >Semester 1</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/pendidikan-pancasila/analisa-alokasi-waktu/Analisis Alokasi Waktu Semester 2.html"
+                      onclick="openLink(this.dataset.file, 'Analisa Alokasi Waktu - Semester 2')"
+                      >Semester 2</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="submenu-group">
+                <h3><i class="fas fa-list-ol"></i> Alur Tujuan Pembelajaran</h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/pendidikan-pancasila/atp/ATP_PKN_KLS 6.html"
+                      onclick="openLink(this.dataset.file, 'Alur Tujuan Pembelajaran')"
+                      >Alur Tujuan Pembelajaran</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="submenu-group">
+                <h3><i class="fas fa-bullseye"></i> Capaian Pembelajaran</h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/pendidikan-pancasila/cp/CP_PKN_KLS 6.html"
+                      onclick="openLink(this.dataset.file, 'Capaian Pembelajaran')"
+                      >Capaian Pembelajaran</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="submenu-group">
+                <h3>
+                  <i class="fas fa-file-alt"></i> Format Lampiran Penilaian
+                </h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/pendidikan-pancasila/format-lampiran-penilaian/Format Penilaian Antar Teman 2 Jawaban.html"
+                      onclick="openLink(this.dataset.file, 'Format Penilaian Antar Teman 2 Jawaban')"
+                      >Format Penilaian Antar Teman 2 Jawaban</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/pendidikan-pancasila/format-lampiran-penilaian/Format Penilaian Antar teman Empat Jawaban.html"
+                      onclick="openLink(this.dataset.file, 'Format Penilaian Antar Teman 4 jawaban')"
+                      >Format Penilaian Antar Teman 4 jawaban</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/pendidikan-pancasila/format-lampiran-penilaian/Instrumen Penilaian Tes Lisan.html"
+                      onclick="openLink(this.dataset.file, 'Instrumen Penilaian Tes Lisan')"
+                      >Instrumen Penilaian Tes Lisan</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/pendidikan-pancasila/format-lampiran-penilaian/Jurnal Perkembangan Sikap Sosial oleh Wali Kelas dan Guru BK.html"
+                      onclick="openLink(this.dataset.file, 'Jurnal Perkembangan Sikap Sosial Oleh Wali Kelas/Guru')"
+                      >Jurnal Perkembangan Sikap Sosial Oleh Wali Kelas/Guru</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/pendidikan-pancasila/format-lampiran-penilaian/Jurnal Perkembangan Sikap Spiritual  Observasi Tebuka.html"
+                      onclick="openLink(this.dataset.file, 'Jurnal Perkembangan Sikap Spiritual (Observasi Tebuka)')"
+                      >Jurnal Perkembangan Sikap Spiritual (Observasi Tebuka)</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/pendidikan-pancasila/format-lampiran-penilaian/Jurnal Perkembangan Sikap Spiritual  Observasi Tertutup.html"
+                      onclick="openLink(this.dataset.file, 'Jurnal Perkembangan Sikap Spiritual (Observasi Tertutup)')"
+                      >Jurnal Perkembangan Sikap Spiritual (Observasi
+                      Tertutup)</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/pendidikan-pancasila/format-lampiran-penilaian/Jurnal Perkembangan Sikap Spiritual dan Sosial oleh Wali Kelas dan Guru BK.html"
+                      onclick="openLink(this.dataset.file, 'Jurnal Perkembangan Sikap Spiritual & Sosial oleh Wali Kelas/Guru')"
+                      >Jurnal Perkembangan Sikap Spiritual & Sosial oleh Wali
+                      Kelas/Guru</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/pendidikan-pancasila/format-lampiran-penilaian/Jurnal Perkembangan Sikap Spiritual oleh Wali Kelas dan Guru BK.html"
+                      onclick="openLink(this.dataset.file, 'Jurnal Perkembangan Sikap Spiritual oleh Wali & Guru')"
+                      >Jurnal Perkembangan Sikap Spiritual oleh Wali & Guru</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/pendidikan-pancasila/format-lampiran-penilaian/Jurnal Sikap Spiritual dan Sosial oleh Pendidik.html"
+                      onclick="openLink(this.dataset.file, 'Jurnal Sikap Spiritual dan Sosial oleh Pendidik')"
+                      >Jurnal Sikap Spiritual dan Sosial oleh Pendidik</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/pendidikan-pancasila/format-lampiran-penilaian/Kisi-kisi Penilaian Praktik Diskusi.html"
+                      onclick="openLink(this.dataset.file, 'Kisi-kisi Penilaian Praktik Diskusi')"
+                      >Kisi-kisi Penilaian Praktik Diskusi</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/pendidikan-pancasila/format-lampiran-penilaian/Kisi-kisi Penilaian Praktik.html"
+                      onclick="openLink(this.dataset.file, 'Kisi-kisi Penilaian Praktik')"
+                      >Kisi-kisi Penilaian Praktik</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/pendidikan-pancasila/format-lampiran-penilaian/Kisi-kisi Penilaian Produk.html"
+                      onclick="openLink(this.dataset.file, 'Kisi-kisi Penilaian Produk')"
+                      >Kisi-kisi Penilaian Produk</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/pendidikan-pancasila/format-lampiran-penilaian/Kisi-Kisi Penilaian Proyek.html"
+                      onclick="openLink(this.dataset.file, 'Kisi-Kisi Penilaian Proyek')"
+                      >Kisi-Kisi Penilaian Proyek</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/pendidikan-pancasila/format-lampiran-penilaian/Kisi-Kisi Tugas.html"
+                      onclick="openLink(this.dataset.file, 'Kisi-Kisi Tugas')"
+                      >Kisi-Kisi Tugas</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/pendidikan-pancasila/format-lampiran-penilaian/Lampiran Portofolio.html"
+                      onclick="openLink(this.dataset.file, 'Lampiran Portofolio')"
+                      >Lampiran Portofolio</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/pendidikan-pancasila/format-lampiran-penilaian/Lembar Penilaian Diri Peserta didik dengan Dua Jawaban.html"
+                      onclick="openLink(this.dataset.file, 'Lembar Penilaian Diri Peserta didik dengan Dua Jawaban')"
+                      >Lembar Penilaian Diri Peserta didik dengan Dua Jawaban</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/pendidikan-pancasila/format-lampiran-penilaian/Lembar Penilaian Diri Peserta didik dengan Empat Jawaban.html"
+                      onclick="openLink(this.dataset.file, 'Lembar Penilaian Diri Peserta didik dengan Empat Jawaban')"
+                      >Lembar Penilaian Diri Peserta didik dengan Empat
+                      Jawaban</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/pendidikan-pancasila/format-lampiran-penilaian/Tes Tertulis.html"
+                      onclick="openLink(this.dataset.file, 'Tes Tertulis')"
+                      >Tes Tertulis</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="submenu-group">
+                <h3><i class="fas fa-book"></i> Jurnal Harian Kelas</h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/pendidikan-pancasila/jurnal-harian-kelas/jurnalxlsxprotek.html"
+                      onclick="openLink(this.dataset.file, 'Jurnal Harian Kelas')"
+                      >Jurnal Harian Kelas</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="submenu-group">
+                <h3>
+                  <i class="fas fa-chalkboard-teacher"></i> Jurnal Mengajar
+                  Harian
+                </h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/pendidikan-pancasila/jurnal-mengajar-harian/JURNAL_PKN_KLS 6.html"
+                      onclick="openLink(this.dataset.file, 'Jurnal Mengajar Harian')"
+                      >Jurnal Mengajar Harian</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="submenu-group">
+                <h3>
+                  <i class="fas fa-bullseye"></i> Kriteria Ketercapain Tujuan
+                  Pembelajaran
+                </h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/pendidikan-pancasila/kktp/KKTP_PKN_KLS 6.html"
+                      onclick="openLink(this.dataset.file, 'Kriteria Ketercapain Tujuan Pembelajaran')"
+                      >Kriteria Ketercapain Tujuan Pembelajaran</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="submenu-group">
+                <h3><i class="fas fa-tasks"></i> Lembar Kerja Peserta didik</h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/pendidikan-pancasila/lkpd/LKPD_PKN_6_BAB 1.html"
+                      onclick="openLink(this.dataset.file, 'Lembar Kerja Peserta didik Bab 1')"
+                      >Lembar Kerja Peserta didik Bab 1</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/pendidikan-pancasila/lkpd/LKPD_PKN_6_BAB 2.html"
+                      onclick="openLink(this.dataset.file, 'Lembar Kerja Peserta didik Bab 2')"
+                      >Lembar Kerja Peserta didik Bab 2</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/pendidikan-pancasila/lkpd/LKPD_PKN_6_BAB 3.html"
+                      onclick="openLink(this.dataset.file, 'Lembar Kerja Peserta didik Bab 3')"
+                      >Lembar Kerja Peserta didik Bab 3</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/pendidikan-pancasila/lkpd/LKPD_PKN_6_BAB 4.html"
+                      onclick="openLink(this.dataset.file, 'Lembar Kerja Peserta didik Bab 4')"
+                      >Lembar Kerja Peserta didik Bab 4</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/pendidikan-pancasila/lkpd/LKPD_PKN_6_BAB 5.html"
+                      onclick="openLink(this.dataset.file, 'Lembar Kerja Peserta didik Bab 5')"
+                      >Lembar Kerja Peserta didik Bab 5</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/pendidikan-pancasila/lkpd/LKPD_PKN_6_BAB 6.html"
+                      onclick="openLink(this.dataset.file, 'Lembar Kerja Peserta didik Bab 6')"
+                      >Lembar Kerja Peserta didik Bab 6</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/pendidikan-pancasila/lkpd/LKPD_PKN_6_BAB 7.html"
+                      onclick="openLink(this.dataset.file, 'Lembar Kerja Peserta didik Bab 7')"
+                      >Lembar Kerja Peserta didik Bab 7</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="submenu-group">
+                <h3><i class="fas fa-book-open"></i> Modul Ajar</h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/pendidikan-pancasila/modul-ajar/Pendidikan Pancasila__Kls 6_BAB 1.html"
+                      onclick="openLink(this.dataset.file, 'Modul Ajar Bab 1')"
+                      >Modul Ajar Bab 1</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/pendidikan-pancasila/modul-ajar/Pendidikan Pancasila__Kls 6_BAB 2.html"
+                      onclick="openLink(this.dataset.file, 'Modul Ajar Bab 2')"
+                      >Modul Ajar Bab 2</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/pendidikan-pancasila/modul-ajar/Pendidikan Pancasila__Kls 6_BAB 3.html"
+                      onclick="openLink(this.dataset.file, 'Modul Ajar Bab 3')"
+                      >Modul Ajar Bab 3</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/pendidikan-pancasila/modul-ajar/Pendidikan Pancasila__Kls 6_BAB 4.html"
+                      onclick="openLink(this.dataset.file, 'Modul Ajar Bab 4')"
+                      >Modul Ajar Bab 4</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/pendidikan-pancasila/modul-ajar/Pendidikan Pancasila__Kls 6_BAB 5.html"
+                      onclick="openLink(this.dataset.file, 'Modul Ajar Bab 5')"
+                      >Modul Ajar Bab 5</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/pendidikan-pancasila/modul-ajar/Pendidikan Pancasila__Kls 6_BAB 6.html"
+                      onclick="openLink(this.dataset.file, 'Modul Ajar Bab 6')"
+                      >Modul Ajar Bab 6</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/pendidikan-pancasila/modul-ajar/Pendidikan Pancasila__Kls 6_BAB 7.html"
+                      onclick="openLink(this.dataset.file, 'Modul Ajar Bab 7')"
+                      >Modul Ajar Bab 7</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="submenu-group">
+                <h3><i class="fas fa-clipboard-check"></i> Penilaian Harian</h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/pendidikan-pancasila/penilaian-harian/Penilaian Harian Kelas 6.htm"
+                      onclick="openLink(this.dataset.file, 'Penilaian Harian')"
+                      >Penilaian Harian</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="submenu-group">
+                <h3><i class="fas fa-calendar-alt"></i> Program Semester</h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/pendidikan-pancasila/prosem/PROSEM_PKN_KLS 6.html"
+                      onclick="openLink(this.dataset.file, 'Program Semester')"
+                      >Program Semester</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="submenu-group">
+                <h3><i class="fas fa-calendar-week"></i> Program Tahunan</h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/pendidikan-pancasila/prota/PROTA_PKN_KLS 6.mht"
+                      onclick="openLink(this.dataset.file, 'Program Tahunan')"
+                      >Program Tahunan</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="submenu-group">
+                <h3><i class="fas fa-question-circle"></i> Soal Latihan</h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/pendidikan-pancasila/soal-latihan/KISI - KISI SAS.html"
+                      onclick="openLink(this.dataset.file, 'Kisi-kisi Sas')"
+                      >Kisi-kisi Sas</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/pendidikan-pancasila/soal-latihan/KISI - KISI STS.html"
+                      onclick="openLink(this.dataset.file, 'Kisi-kisi Sts')"
+                      >Kisi-kisi Sts</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/pendidikan-pancasila/soal-latihan/SAS.html"
+                      onclick="openLink(this.dataset.file, 'SAS')"
+                      >SAS</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/pendidikan-pancasila/soal-latihan/STS.html"
+                      onclick="openLink(this.dataset.file, 'STS')"
+                      >STS</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                onclick="backToMenu()"
+              >
+                <i class="fas fa-arrow-left"></i> Kembali
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- IPAS SECTION (FULL RESTORED) -->
+        <section class="form-section" id="ipasSection" style="display: none">
+          <div class="submenu-container">
+            <h2 class="form-title"><i class="fas fa-atom"></i> Menu IPAS</h2>
+            <div class="submenu-grid">
+              <div class="submenu-group">
+                <h3><i class="fas fa-clock"></i> Analisa Alokasi Waktu</h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/ipas/analisa-alokasi-waktu/Analisis Alokasi Waktu Semester 1.html"
+                      onclick="openLink(this.dataset.file, 'Analisa Alokasi Waktu - Semester 1')"
+                      >Semester 1</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/ipas/analisa-alokasi-waktu/Analisis Alokasi Waktu Semester 2.html"
+                      onclick="openLink(this.dataset.file, 'Analisa Alokasi Waktu - Semester 2')"
+                      >Semester 2</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="submenu-group">
+                <h3><i class="fas fa-list-ol"></i> Alur Tujuan Pembelajaran</h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/ipas/atp/ALUR TUJUAN PEMBELAJARAN (ATP).html"
+                      onclick="openLink(this.dataset.file, 'Alur Tujuan Pembelajaran')"
+                      >Alur Tujuan Pembelajaran</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="submenu-group">
+                <h3><i class="fas fa-bullseye"></i> Capaian Pembelajaran</h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/ipas/cp/CAPAIAN PEMBELAJARAN (CP).html"
+                      onclick="openLink(this.dataset.file, 'Capaian Pembelajaran')"
+                      >Capaian Pembelajaran</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="submenu-group">
+                <h3>
+                  <i class="fas fa-file-alt"></i> Format Lampiran Penilaian
+                </h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/ipas/format-lampiran-penilaian/01. Format Penilaian Antar teman 2 Jawaban.html"
+                      onclick="openLink(this.dataset.file, 'Format Penilaian Antar Teman 2 Jawaban')"
+                      >Format Penilaian Antar Teman 2 Jawaban</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/ipas/format-lampiran-penilaian/03. Format Penilaian Antar teman Empat Jawaban.html"
+                      onclick="openLink(this.dataset.file, 'Format Penilaian Antar Teman 4 jawaban')"
+                      >Format Penilaian Antar Teman 4 jawaban</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/ipas/format-lampiran-penilaian/03. Instrumen Penilaian Tes Lisan.html"
+                      onclick="openLink(this.dataset.file, 'Instrumen Penilaian Tes Lisan')"
+                      >Instrumen Penilaian Tes Lisan</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/ipas/format-lampiran-penilaian/04. Jurnal Perkembangan Sikap Sosial oleh Wali Kelas dan Guru BK.html"
+                      onclick="openLink(this.dataset.file, 'Jurnal Perkembangan Sikap Sosial Oleh Wali Kelas/Guru')"
+                      >Jurnal Perkembangan Sikap Sosial Oleh Wali Kelas/Guru</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/ipas/format-lampiran-penilaian/05. Jurnal Perkembangan Sikap Spiritual  (Observasi Tebuka).html"
+                      onclick="openLink(this.dataset.file, 'Jurnal Perkembangan Sikap Spiritual (Observasi Tebuka)')"
+                      >Jurnal Perkembangan Sikap Spiritual (Observasi Tebuka)</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/ipas/format-lampiran-penilaian/06. Jurnal Perkembangan Sikap Spiritual  (Observasi Tertutup).html"
+                      onclick="openLink(this.dataset.file, 'Jurnal Perkembangan Sikap Spiritual (Observasi Tertutup)')"
+                      >Jurnal Perkembangan Sikap Spiritual (Observasi
+                      Tertutup)</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/ipas/format-lampiran-penilaian/07. Jurnal Perkembangan Sikap Spiritual dan Sosial oleh Wali Kelas dan Guru BK.html"
+                      onclick="openLink(this.dataset.file, 'Jurnal Perkembangan Sikap Spiritual & Sosial oleh Wali Kelas/Guru')"
+                      >Jurnal Perkembangan Sikap Spiritual & Sosial oleh Wali
+                      Kelas/Guru</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/ipas/format-lampiran-penilaian/08. Jurnal Perkembangan Sikap Spiritual oleh Wali Kelas dan Guru BK.html"
+                      onclick="openLink(this.dataset.file, 'Jurnal Perkembangan Sikap Spiritual oleh Wali & Guru')"
+                      >Jurnal Perkembangan Sikap Spiritual oleh Wali & Guru</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/ipas/format-lampiran-penilaian/09. Jurnal Sikap Spiritual dan Sosial oleh Pendidik.html"
+                      onclick="openLink(this.dataset.file, 'Jurnal Sikap Spiritual dan Sosial oleh Pendidik')"
+                      >Jurnal Sikap Spiritual dan Sosial oleh Pendidik</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/ipas/format-lampiran-penilaian/10. Kisi-kisi Penilaian Praktik Diskusi.html"
+                      onclick="openLink(this.dataset.file, 'Kisi-kisi Penilaian Praktik Diskusi')"
+                      >Kisi-kisi Penilaian Praktik Diskusi</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/ipas/format-lampiran-penilaian/11. Kisi-kisi Penilaian Praktik.html"
+                      onclick="openLink(this.dataset.file, 'Kisi-kisi Penilaian Praktik')"
+                      >Kisi-kisi Penilaian Praktik</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/ipas/format-lampiran-penilaian/12. Kisi-kisi Penilaian Produk.html"
+                      onclick="openLink(this.dataset.file, 'Kisi-kisi Penilaian Produk')"
+                      >Kisi-kisi Penilaian Produk</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/ipas/format-lampiran-penilaian/13. Kisi-Kisi Penilaian Proyek.html"
+                      onclick="openLink(this.dataset.file, 'Kisi-Kisi Penilaian Proyek')"
+                      >Kisi-Kisi Penilaian Proyek</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/ipas/format-lampiran-penilaian/14. Kisi-Kisi Tugas.html"
+                      onclick="openLink(this.dataset.file, 'Kisi-Kisi Tugas')"
+                      >Kisi-Kisi Tugas</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/ipas/format-lampiran-penilaian/15. Lampiran Portofolio.html"
+                      onclick="openLink(this.dataset.file, 'Lampiran Portofolio')"
+                      >Lampiran Portofolio</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/ipas/format-lampiran-penilaian/16. Lembar Penilaian Diri Peserta didik dengan Dua Jawaban.html"
+                      onclick="openLink(this.dataset.file, 'Lembar Penilaian Diri Peserta didik dengan Dua Jawaban')"
+                      >Lembar Penilaian Diri Peserta didik dengan Dua Jawaban</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/ipas/format-lampiran-penilaian/17. Lembar Penilaian Diri Peserta didik dengan Empat Jawaban.html"
+                      onclick="openLink(this.dataset.file, 'Lembar Penilaian Diri Peserta didik dengan Empat Jawaban')"
+                      >Lembar Penilaian Diri Peserta didik dengan Empat
+                      Jawaban</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/ipas/format-lampiran-penilaian/18. Tes Tertulis.html"
+                      onclick="openLink(this.dataset.file, 'Tes Tertulis')"
+                      >Tes Tertulis</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="submenu-group">
+                <h3><i class="fas fa-book"></i> Jurnal Harian Mengajar</h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/ipas/jurnal-mengajar-harian/JURNAL HARIAN PEMBELAJARAN.html"
+                      onclick="openLink(this.dataset.file, 'Jurnal Harian Mengajar')"
+                      >Jurnal Harian Mengajar</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="submenu-group">
+                <h3>
+                  <i class="fas fa-chalkboard-teacher"></i> Kriteria Ketercapain
+                  Tujuan Pembelajaran
+                </h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/ipas/kktp/KRITERIA KETERCAPAIAN TUJUAN PEMBELAJARAN (KKTP).html"
+                      onclick="openLink(this.dataset.file, 'Kriteria Ketercapain Tujuan Pembelajaran')"
+                      >Kriteria Ketercapain Tujuan Pembelajaran</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="submenu-group">
+                <h3><i class="fas fa-tasks"></i> Lembar Kerja Peserta didik</h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/ipas/lkpd/LKPD BAB 1.html"
+                      onclick="openLink(this.dataset.file, 'Lembar Kerja Peserta didik Bab 1')"
+                      >Lembar Kerja Peserta didik Bab 1</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/ipas/lkpd/LKPD BAB 2.html"
+                      onclick="openLink(this.dataset.file, 'Lembar Kerja Peserta didik Bab 2')"
+                      >Lembar Kerja Peserta didik Bab 2</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/ipas/lkpd/LKPD BAB 3.html"
+                      onclick="openLink(this.dataset.file, 'Lembar Kerja Peserta didik Bab 3')"
+                      >Lembar Kerja Peserta didik Bab 3</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/ipas/lkpd/LKPD BAB 4.html"
+                      onclick="openLink(this.dataset.file, 'Lembar Kerja Peserta didik Bab 4')"
+                      >Lembar Kerja Peserta didik Bab 4</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/ipas/lkpd/LKPD BAB 5.html"
+                      onclick="openLink(this.dataset.file, 'Lembar Kerja Peserta didik Bab 5')"
+                      >Lembar Kerja Peserta didik Bab 5</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/ipas/lkpd/LKPD BAB 6.html"
+                      onclick="openLink(this.dataset.file, 'Lembar Kerja Peserta didik Bab 6')"
+                      >Lembar Kerja Peserta didik Bab 6</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/ipas/lkpd/LKPD BAB 7.html"
+                      onclick="openLink(this.dataset.file, 'Lembar Kerja Peserta didik Bab 7')"
+                      >Lembar Kerja Peserta didik Bab 7</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/ipas/lkpd/LKPD BAB 8.html"
+                      onclick="openLink(this.dataset.file, 'Lembar Kerja Peserta didik Bab 8')"
+                      >Lembar Kerja Peserta didik Bab 8</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="submenu-group">
+                <h3><i class="fas fa-book-open"></i> Modul Ajar</h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/ipas/modul-ajar/IPAS KELAS 6 BAB 1.html"
+                      onclick="openLink(this.dataset.file, 'Modul Ajar Bab 1')"
+                      >Modul Ajar Bab 1</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/ipas/modul-ajar/IPAS KELAS 6 BAB 2.html"
+                      onclick="openLink(this.dataset.file, 'Modul Ajar Bab 2')"
+                      >Modul Ajar Bab 2</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/ipas/modul-ajar/IPAS KELAS 6 BAB 3.html"
+                      onclick="openLink(this.dataset.file, 'Modul Ajar Bab 3')"
+                      >Modul Ajar Bab 3</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/ipas/modul-ajar/IPAS KELAS 6 BAB 4.html"
+                      onclick="openLink(this.dataset.file, 'Modul Ajar Bab 4')"
+                      >Modul Ajar Bab 4</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/ipas/modul-ajar/IPAS KELAS 6 BAB 5.html"
+                      onclick="openLink(this.dataset.file, 'Modul Ajar Bab 5')"
+                      >Modul Ajar Bab 5</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/ipas/modul-ajar/IPAS KELAS 6 BAB 6.html"
+                      onclick="openLink(this.dataset.file, 'Modul Ajar Bab 6')"
+                      >Modul Ajar Bab 6</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/ipas/modul-ajar/IPAS KELAS 6 BAB 7.html"
+                      onclick="openLink(this.dataset.file, 'Modul Ajar Bab 7')"
+                      >Modul Ajar Bab 7</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/ipas/modul-ajar/IPAS KELAS 6 BAB 8.html"
+                      onclick="openLink(this.dataset.file, 'Modul Ajar Bab 8')"
+                      >Modul Ajar Bab 8</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="submenu-group">
+                <h3><i class="fas fa-clipboard-check"></i> Penilaian Harian</h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/ipas/penilaian-harian/Penilaian Harian Kelas 6.htm"
+                      onclick="openLink(this.dataset.file, 'Penilaian Harian')"
+                      >Penilaian Harian</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="submenu-group">
+                <h3><i class="fas fa-calendar-alt"></i> Program Semester</h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/ipas/prosem/PROGRAM SEMESTER (PROSEM) - SEMESTER GANJIL.htm"
+                      onclick="openLink(this.dataset.file, 'Program Semester Ganil')"
+                      >Program Semester Ganil</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/ipas/prosem/PROGRAM SEMESTER (PROSEM) - SEMESTER GENAP.htm"
+                      onclick="openLink(this.dataset.file, 'Program Semester Genap')"
+                      >Program Semester Genap</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="submenu-group">
+                <h3><i class="fas fa-calendar-week"></i> Program Tahunan</h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/ipas/prota/IPAS KELAS 6 BAB 8.htm"
+                      onclick="openLink(this.dataset.file, 'Program Tahunan')"
+                      >Program Tahunan</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="submenu-group">
+                <h3><i class="fas fa-question-circle"></i> Soal Latihan</h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/ipas/soal-latihan/KISI - KISI SAS.html"
+                      onclick="openLink(this.dataset.file, 'Kisi-kisi Sas')"
+                      >Kisi-kisi Sas</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/ipas/soal-latihan/KISI - KISI STS.html"
+                      onclick="openLink(this.dataset.file, 'Kisi-kisi Sts')"
+                      >Kisi-kisi Sts</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/ipas/soal-latihan/SUMATIF AKHIR SEMESTER.html"
+                      onclick="openLink(this.dataset.file, 'Sumatif Akhir Semester')"
+                      >Sumatif Akhir Semester</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/ipas/soal-latihan/SUMATIF TENGAH SEMESTER.html"
+                      onclick="openLink(this.dataset.file, 'Sumatif Tengah Semester')"
+                      >Sumatif Tengah Semester</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                onclick="backToMenu()"
+              >
+                <i class="fas fa-arrow-left"></i> Kembali
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- SENI RUPA SECTION (FULL RESTORED) -->
+        <section
+          class="form-section"
+          id="seniRupaSection"
+          style="display: none"
+        >
+          <div class="submenu-container">
+            <h2 class="form-title">
+              <i class="fas fa-paint-brush"></i> Menu Seni Rupa
+            </h2>
+            <div class="submenu-grid">
+              <div class="submenu-group">
+                <h3><i class="fas fa-clock"></i> Analisa Alokasi Waktu</h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/seni-rupa/analisa-alokasi-waktu/Analisis Alokasi Waktu Semester1.html"
+                      onclick="openLink(this.dataset.file, 'Analisa Alokasi Waktu - Semester1')"
+                      >Semester 1</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/seni-rupa/analisa-alokasi-waktu/Analisis Alokasi Waktu Semester 2.html"
+                      onclick="openLink(this.dataset.file, 'Analisa Alokasi Waktu - Semester 2')"
+                      >Semester 2</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="submenu-group">
+                <h3><i class="fas fa-list-ol"></i> Alur Tujuan Pembelajaran</h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/seni-rupa/atp/ATP_SENI RUPA 6.html"
+                      onclick="openLink(this.dataset.file, 'Alur Tujuan Pembelajaran')"
+                      >Alur Tujuan Pembelajaran</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="submenu-group">
+                <h3><i class="fas fa-bullseye"></i> Capaian Pembelajaran</h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/seni-rupa/cp/CP_SENI RUPA 6.html"
+                      onclick="openLink(this.dataset.file, 'Capaian Pembelajaran')"
+                      >Capaian Pembelajaran</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="submenu-group">
+                <h3>
+                  <i class="fas fa-file-alt"></i> Format Lampiran Penilaian
+                </h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/seni-rupa/format-lampiran-penilaian/01. Format Penilaian Antar teman 2 Jawaban.html"
+                      onclick="openLink(this.dataset.file, 'Format Penilaian Antar Teman 2 Jawaban')"
+                      >Format Penilaian Antar Teman 2 Jawaban</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/seni-rupa/format-lampiran-penilaian/03. Format Penilaian Antar teman Empat Jawaban.html"
+                      onclick="openLink(this.dataset.file, 'Format Penilaian Antar Teman 4 jawaban')"
+                      >Format Penilaian Antar Teman 4 jawaban</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/seni-rupa/format-lampiran-penilaian/03. Instrumen Penilaian Tes Lisan.html"
+                      onclick="openLink(this.dataset.file, 'Instrumen Penilaian Tes Lisan')"
+                      >Instrumen Penilaian Tes Lisan</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/seni-rupa/format-lampiran-penilaian/04. Jurnal Perkembangan Sikap Sosial oleh Wali Kelas dan Guru BK.html"
+                      onclick="openLink(this.dataset.file, 'Jurnal Perkembangan Sikap Sosial Oleh Wali Kelas/Guru')"
+                      >Jurnal Perkembangan Sikap Sosial Oleh Wali Kelas/Guru</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/seni-rupa/format-lampiran-penilaian/05. Jurnal Perkembangan Sikap Spiritual  Observasi Tebuka.html"
+                      onclick="openLink(this.dataset.file, 'Jurnal Perkembangan Sikap Spiritual (Observasi Tebuka)')"
+                      >Jurnal Perkembangan Sikap Spiritual (Observasi Tebuka)</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/seni-rupa/format-lampiran-penilaian/06. Jurnal Perkembangan Sikap Spiritual  Observasi Tertutup.html"
+                      onclick="openLink(this.dataset.file, 'Jurnal Perkembangan Sikap Spiritual (Observasi Tertutup)')"
+                      >Jurnal Perkembangan Sikap Spiritual (Observasi
+                      Tertutup)</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/seni-rupa/format-lampiran-penilaian/07.-Jurnal-Perkembangan-Sikap-Spiritual-dan-Sosial-oleh-Wali-Kelas-dan-Guru-BK.html"
+                      onclick="openLink(this.dataset.file, 'Jurnal Perkembangan Sikap Spiritual & Sosial oleh Wali Kelas/Guru')"
+                      >Jurnal Perkembangan Sikap Spiritual & Sosial oleh Wali
+                      Kelas/Guru</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/seni-rupa/format-lampiran-penilaian/08.-Jurnal-Perkembangan-Sikap-Spiritual-oleh-Wali-Kelas-dan-Guru-BK.html"
+                      onclick="openLink(this.dataset.file, 'Jurnal Perkembangan Sikap Spiritual oleh Wali & Guru')"
+                      >Jurnal Perkembangan Sikap Spiritual oleh Wali & Guru</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/seni-rupa/format-lampiran-penilaian/09.-Jurnal-Sikap-Spiritual-dan-Sosial-oleh-Pendidik.html"
+                      onclick="openLink(this.dataset.file, 'Jurnal Sikap Spiritual dan Sosial oleh Pendidik')"
+                      >Jurnal Sikap Spiritual dan Sosial oleh Pendidik</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/seni-rupa/format-lampiran-penilaian/10.-Kisi-kisi-Penilaian-Praktik-Diskusi.html"
+                      onclick="openLink(this.dataset.file, 'Kisi-kisi Penilaian Praktik Diskusi')"
+                      >Kisi-kisi Penilaian Praktik Diskusi</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/seni-rupa/format-lampiran-penilaian/11.-Kisi-kisi-Penilaian-Praktik.html"
+                      onclick="openLink(this.dataset.file, 'Kisi-kisi Penilaian Praktik')"
+                      >Kisi-kisi Penilaian Praktik</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/seni-rupa/format-lampiran-penilaian/12.-Kisi-kisi-Penilaian-Produk.html"
+                      onclick="openLink(this.dataset.file, 'Kisi-kisi Penilaian Produk')"
+                      >Kisi-kisi Penilaian Produk</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/seni-rupa/format-lampiran-penilaian/13.-Kisi-Kisi-Penilaian-Proyek.html"
+                      onclick="openLink(this.dataset.file, 'Kisi-Kisi Penilaian Proyek')"
+                      >Kisi-Kisi Penilaian Proyek</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/seni-rupa/format-lampiran-penilaian/14.-Kisi-Kisi-Tugas.html"
+                      onclick="openLink(this.dataset.file, 'Kisi-Kisi Tugas')"
+                      >Kisi-Kisi Tugas</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/seni-rupa/format-lampiran-penilaian/15.-Lampiran-Portofolio.html"
+                      onclick="openLink(this.dataset.file, 'Lampiran Portofolio')"
+                      >Lampiran Portofolio</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/seni-rupa/format-lampiran-penilaian/Lembar Penilaian Diri Peserta didik dengan Dua Jawaban.html"
+                      onclick="openLink(this.dataset.file, 'Lembar Penilaian Diri Peserta didik dengan Dua Jawaban')"
+                      >Lembar Penilaian Diri Peserta didik dengan Dua Jawaban</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/seni-rupa/format-lampiran-penilaian/Lembar Penilaian Diri Peserta didik dengan Empat Jawaban.html"
+                      onclick="openLink(this.dataset.file, 'Lembar Penilaian Diri Peserta didik dengan Empat Jawaban')"
+                      >Lembar Penilaian Diri Peserta didik dengan Empat
+                      Jawaban</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/seni-rupa/format-lampiran-penilaian/Tes Tertulis.html"
+                      onclick="openLink(this.dataset.file, 'Tes Tertulis')"
+                      >Tes Tertulis</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="submenu-group">
+                <h3><i class="fas fa-book"></i> Jurnal Harian Mengajar</h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/seni-rupa/jurnal-mengajar-harian/Jurnal Seni Rupa.html"
+                      onclick="openLink(this.dataset.file, 'Jurnal Harian Mengajar')"
+                      >Jurnal Harian Mengajar</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="submenu-group">
+                <h3>
+                  <i class="fas fa-chalkboard-teacher"></i> Kriteria Ketercapain
+                  Tujuan Pembelajaran
+                </h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/seni-rupa/kktp/kktp seni rupa.html"
+                      onclick="openLink(this.dataset.file, 'Kriteria Ketercapain Tujuan Pembelajaran')"
+                      >Kriteria Ketercapain Tujuan Pembelajaran</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="submenu-group">
+                <h3><i class="fas fa-tasks"></i> Lembar Kerja Peserta didik</h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/seni-rupa/lkpd/LKPD_SENI RUPA_6_BAB 1.html"
+                      onclick="openLink(this.dataset.file, 'Lembar Kerja Peserta didik Bab 1')"
+                      >Lembar Kerja Peserta didik Bab 1</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/seni-rupa/lkpd/LKPD_SENI RUPA_6_BAB 2.html"
+                      onclick="openLink(this.dataset.file, 'Lembar Kerja Peserta didik Bab 2')"
+                      >Lembar Kerja Peserta didik Bab 2</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/seni-rupa/lkpd/LKPD_SENI RUPA_6_BAB 3.html"
+                      onclick="openLink(this.dataset.file, 'Lembar Kerja Peserta didik Bab 3')"
+                      >Lembar Kerja Peserta didik Bab 3</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/seni-rupa/lkpd/LKPD_SENI RUPA_6_BAB 4.html"
+                      onclick="openLink(this.dataset.file, 'Lembar Kerja Peserta didik Bab 4')"
+                      >Lembar Kerja Peserta didik Bab 4</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/seni-rupa/lkpd/LKPD_SENI RUPA_6_BAB 5.html"
+                      onclick="openLink(this.dataset.file, 'Lembar Kerja Peserta didik Bab 5')"
+                      >Lembar Kerja Peserta didik Bab 5</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/seni-rupa/lkpd/LKPD_SENI RUPA_6_BAB 6.html"
+                      onclick="openLink(this.dataset.file, 'Lembar Kerja Peserta didik Bab 6')"
+                      >Lembar Kerja Peserta didik Bab 6</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/seni-rupa/lkpd/LKPD_SENI RUPA_6_BAB 7.html"
+                      onclick="openLink(this.dataset.file, 'Lembar Kerja Peserta didik Bab 7')"
+                      >Lembar Kerja Peserta didik Bab 7</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/seni-rupa/lkpd/LKPD_SENI RUPA_6_BAB 8.html"
+                      onclick="openLink(this.dataset.file, 'Lembar Kerja Peserta didik Bab 8')"
+                      >Lembar Kerja Peserta didik Bab 8</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/seni-rupa/lkpd/LKPD_SENI RUPA_6_BAB 9.html"
+                      onclick="openLink(this.dataset.file, 'Lembar Kerja Peserta didik Bab 9')"
+                      >Lembar Kerja Peserta didik Bab 9</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/seni-rupa/lkpd/LKPD_SENI RUPA_6_BAB 10.html"
+                      onclick="openLink(this.dataset.file, 'Lembar Kerja Peserta didik Bab 10')"
+                      >Lembar Kerja Peserta didik Bab 10</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/seni-rupa/lkpd/LKPD_SENI RUPA_6_BAB 11.html"
+                      onclick="openLink(this.dataset.file, 'Lembar Kerja Peserta didik Bab 11')"
+                      >Lembar Kerja Peserta didik Bab 11</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/seni-rupa/lkpd/LKPD_SENI RUPA_6_BAB 12.html"
+                      onclick="openLink(this.dataset.file, 'Lembar Kerja Peserta didik Bab 12')"
+                      >Lembar Kerja Peserta didik Bab 12</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="submenu-group">
+                <h3><i class="fas fa-book-open"></i> Modul Ajar</h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/seni-rupa/modul-ajar/KLS 6_SENI RUPA_BAB 1.html"
+                      onclick="openLink(this.dataset.file, 'Modul Ajar Bab 1')"
+                      >Modul Ajar Bab 1</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/seni-rupa/modul-ajar/KLS 6_SENI RUPA_BAB 2.html"
+                      onclick="openLink(this.dataset.file, 'Modul Ajar Bab 2')"
+                      >Modul Ajar Bab 2</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/seni-rupa/modul-ajar/KLS 6_SENI RUPA_BAB 3.html"
+                      onclick="openLink(this.dataset.file, 'Modul Ajar Bab 3')"
+                      >Modul Ajar Bab 3</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/seni-rupa/modul-ajar/KLS 6_SENI RUPA_BAB 4.html"
+                      onclick="openLink(this.dataset.file, 'Modul Ajar Bab 4')"
+                      >Modul Ajar Bab 4</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/seni-rupa/modul-ajar/KLS 6_SENI RUPA_BAB 5.html"
+                      onclick="openLink(this.dataset.file, 'Modul Ajar Bab 5')"
+                      >Modul Ajar Bab 5</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/seni-rupa/modul-ajar/KLS 6_SENI RUPA_BAB 6.html"
+                      onclick="openLink(this.dataset.file, 'Modul Ajar Bab 6')"
+                      >Modul Ajar Bab 6</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/seni-rupa/modul-ajar/KLS 6_SENI RUPA_BAB 7.html"
+                      onclick="openLink(this.dataset.file, 'Modul Ajar Bab 7')"
+                      >Modul Ajar Bab 7</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/seni-rupa/modul-ajar/KLS 6_SENI RUPA_BAB 8.html"
+                      onclick="openLink(this.dataset.file, 'Modul Ajar Bab 8')"
+                      >Modul Ajar Bab 8</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/seni-rupa/modul-ajar/KLS 6_SENI RUPA_BAB 9.html"
+                      onclick="openLink(this.dataset.file, 'Modul Ajar Bab 9')"
+                      >Modul Ajar Bab 9</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/seni-rupa/modul-ajar/KLS 6_SENI RUPA_BAB 10.html"
+                      onclick="openLink(this.dataset.file, 'Modul Ajar Bab 10')"
+                      >Modul Ajar Bab 10</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/seni-rupa/modul-ajar/KLS 6_SENI RUPA_BAB 11.html"
+                      onclick="openLink(this.dataset.file, 'Modul Ajar Bab 11')"
+                      >Modul Ajar Bab 11</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/seni-rupa/modul-ajar/KLS 6_SENI RUPA_BAB 12.html"
+                      onclick="openLink(this.dataset.file, 'Modul Ajar Bab 12')"
+                      >Modul Ajar Bab 12</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="submenu-group">
+                <h3><i class="fas fa-calendar-alt"></i> Program Semester</h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/seni-rupa/prosem/PROSEM_SENI RUPA 6.html"
+                      onclick="openLink(this.dataset.file, 'Program Semester')"
+                      >Program Semester</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="submenu-group">
+                <h3><i class="fas fa-calendar-week"></i> Program Tahunan</h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/seni-rupa/prota/PROTA_SENI RUPA 6.html"
+                      onclick="openLink(this.dataset.file, 'Program Tahunan')"
+                      >Program Tahunan</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="submenu-group">
+                <h3><i class="fas fa-question-circle"></i> Soal Latihan</h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/seni-rupa/soal-latihan/KISI - KISI SAS.html"
+                      onclick="openLink(this.dataset.file, 'Kisi-kisi Sas')"
+                      >Kisi-kisi Sas</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/seni-rupa/soal-latihan/KISI - KISI STS.html"
+                      onclick="openLink(this.dataset.file, 'Kisi-kisi Sts')"
+                      >Kisi-kisi Sts</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/seni-rupa/soal-latihan/SUMATIF SAS.html"
+                      onclick="openLink(this.dataset.file, 'SAS')"
+                      >SAS</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/seni-rupa/soal-latihan/SUMATIF STS.html"
+                      onclick="openLink(this.dataset.file, 'STS')"
+                      >STS</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                onclick="backToMenu()"
+              >
+                <i class="fas fa-arrow-left"></i> Kembali
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- KALENDER PENDIDIKAN SECTION (FULL RESTORED) -->
+        <section
+          class="form-section"
+          id="kalenderPendidikanSection"
+          style="display: none"
+        >
+          <div class="submenu-container">
+            <h2 class="form-title">
+              <i class="fas fa-calendar-alt"></i> Menu Kalender Pendidikan
+            </h2>
+            <div class="submenu-grid">
+              <div class="submenu-group">
+                <h3><i class="fas fa-calendar"></i> Kalender Akademik</h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/kalender-pendidikan/kalender-akademik.html"
+                      onclick="openLink(this.dataset.file, 'Kalender Akademik')"
+                      >Lihat Kalender Akademik</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="submenu-group">
+                <h3><i class="fas fa-file-signature"></i> Jadwal Ujian</h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/kalender-pendidikan/jadwal-uts.html"
+                      onclick="openLink(this.dataset.file, 'Jadwal UTS')"
+                      >Jadwal Ulangan Tengah Semester</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/kalender-pendidikan/jadwal-uas.html"
+                      onclick="openLink(this.dataset.file, 'Jadwal UAS')"
+                      >Jadwal Ulangan Akhir Semester</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/kalender-pendidikan/jadwal-ukk.html"
+                      onclick="openLink(this.dataset.file, 'Jadwal UKK')"
+                      >Jadwal Ujian Kenaikan Kelas</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="submenu-group">
+                <h3><i class="fas fa-umbrella-beach"></i> Hari Libur</h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/kalender-pendidikan/hari-libur-nasional.html"
+                      onclick="openLink(this.dataset.file, 'Hari Libur Nasional')"
+                      >Hari Libur Nasional</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/kalender-pendidikan/cuti-bersama.html"
+                      onclick="openLink(this.dataset.file, 'Cuti Bersama')"
+                      >Jadwal Cuti Bersama</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="submenu-group">
+                <h3><i class="fas fa-school"></i> Kegiatan Sekolah</h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/kalender-pendidikan/kegiatan-tahunan.html"
+                      onclick="openLink(this.dataset.file, 'Kegiatan Tahunan')"
+                      >Agenda Kegiatan Tahunan</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/kalender-pendidikan/kegiatan-ekstrakurikuler.html"
+                      onclick="openLink(this.dataset.file, 'Ekstrakurikuler')"
+                      >Jadwal Ekstrakurikuler</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                onclick="backToMenu()"
+              >
+                <i class="fas fa-arrow-left"></i> Kembali
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- BAHASA INGGRIS SECTION (FULL RESTORED) -->
+        <section
+          class="form-section"
+          id="bahasaInggrisSection"
+          style="display: none"
+        >
+          <div class="submenu-container">
+            <h2 class="form-title">
+              <i class="fas fa-globe-americas"></i> Menu Bahasa Inggris
+            </h2>
+            <div class="submenu-grid">
+              <div class="submenu-group">
+                <h3><i class="fas fa-bullseye"></i> Analisa Penilaian</h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-inggris/analisa-penilaian/tujuan-pembelajaran.html"
+                      onclick="openLink(this.dataset.file, 'Tujuan Pembelajaran')"
+                      >Analisis Penilaian Kurikulum Merdeka</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="submenu-group">
+                <h3><i class="fas fa-book"></i> Alur Tujuan Pembelajaran</h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-inggris/atp/jurnal.html"
+                      onclick="openLink(this.dataset.file, 'Jurnal Harian Kelas')"
+                      >Alur Tujuan Pembelajaran</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="submenu-group">
+                <h3>
+                  <i class="fas fa-chalkboard-teacher"></i>Buku Guru dan Siswa
+                </h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-inggris/buku-guru-dan-siswa/jurnal.html"
+                      onclick="openLink(this.dataset.file, 'Buku Guru dan Siswa')"
+                      >Buku Guru dan Siswa</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="submenu-group">
+                <h3>
+                  <i class="fas fa-chalkboard-teacher"></i>Capaian Pembelajaran
+                </h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-inggris/cp/jurnal.html"
+                      onclick="openLink(this.dataset.file, 'Capaian Pembelajaran')"
+                      >Capaian Pembelajaran</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="submenu-group">
+                <h3>
+                  <i class="fas fa-chalkboard-teacher"></i>Daftar Hadir Kelas
+                </h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-inggris/daftar-hadir-kelas/jurnal.html"
+                      onclick="openLink(this.dataset.file, 'Daftar Hadir Kelas')"
+                      >Daftar Hadir Kelas</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="submenu-group">
+                <h3>
+                  <i class="fas fa-clipboard-list"></i> Kriteria Ketercapaian
+                </h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-inggris/kktp/kktp.html"
+                      onclick="openLink(this.dataset.file, 'Kriteria Ketercapaian Tujuan Pembelajaran')"
+                      >Kriteria Ketercapaian Tujuan Pembelajaran</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="submenu-group">
+                <h3><i class="fas fa-tasks"></i> Lembar Kerja Peserta Didik</h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-inggris/lkpd/lkpd-bab-1.html"
+                      onclick="openLink(this.dataset.file, 'LKPD Bab 1')"
+                      >Lembar Kerja Peserta Didik Bab 1</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-inggris/lkpd/lkpd-bab-2.html"
+                      onclick="openLink(this.dataset.file, 'LKPD Bab 2')"
+                      >Lembar Kerja Peserta Didik Bab 2</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-inggris/lkpd/lkpd-bab-3.html"
+                      onclick="openLink(this.dataset.file, 'LKPD Bab 3')"
+                      >Lembar Kerja Peserta Didik Bab 3</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-inggris/lkpd/lkpd-bab-4.html"
+                      onclick="openLink(this.dataset.file, 'LKPD Bab 4')"
+                      >Lembar Kerja Peserta Didik Bab 4</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-inggris/lkpd/lkpd-bab-5.html"
+                      onclick="openLink(this.dataset.file, 'LKPD Bab 5')"
+                      >Lembar Kerja Peserta Didik Bab 5</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-inggris/lkpd/lkpd-bab-6.html"
+                      onclick="openLink(this.dataset.file, 'LKPD Bab 6')"
+                      >Lembar Kerja Peserta Didik Bab 6</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-inggris/lkpd/lkpd-bab-7.html"
+                      onclick="openLink(this.dataset.file, 'LKPD Bab 7')"
+                      >Lembar Kerja Peserta Didik Bab 7</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="submenu-group">
+                <h3><i class="fas fa-book-open"></i> Modul Ajar</h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-inggris/modul-ajar/modul-ajar-bab-1.html"
+                      onclick="openLink(this.dataset.file, 'Modul Ajar Bab 1')"
+                      >Modul Ajar Bab 1</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-inggris/modul-ajar/modul-ajar-bab-2.html"
+                      onclick="openLink(this.dataset.file, 'Modul Ajar Bab 2')"
+                      >Modul Ajar Bab 2</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-inggris/modul-ajar/modul-ajar-bab-3.html"
+                      onclick="openLink(this.dataset.file, 'Modul Ajar Bab 3')"
+                      >Modul Ajar Bab 3</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-inggris/modul-ajar/modul-ajar-bab-4.html"
+                      onclick="openLink(this.dataset.file, 'Modul Ajar Bab 4')"
+                      >Modul Ajar Bab 4</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-inggris/modul-ajar/modul-ajar-bab-5.html"
+                      onclick="openLink(this.dataset.file, 'Modul Ajar Bab 5')"
+                      >Modul Ajar Bab 5</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-inggris/modul-ajar/modul-ajar-bab-6.html"
+                      onclick="openLink(this.dataset.file, 'Modul Ajar Bab 6')"
+                      >Modul Ajar Bab 6</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-inggris/modul-ajar/modul-ajar-bab-7.html"
+                      onclick="openLink(this.dataset.file, 'Modul Ajar Bab 7')"
+                      >Modul Ajar Bab 7</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-inggris/modul-ajar/modul-ajar-bab-8.html"
+                      onclick="openLink(this.dataset.file, 'Modul Ajar Bab 8')"
+                      >Modul Ajar Bab 8</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-inggris/modul-ajar/modul-ajar-bab-9.html"
+                      onclick="openLink(this.dataset.file, 'Modul Ajar Bab 9')"
+                      >Modul Ajar Bab 9</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-inggris/modul-ajar/modul-ajar-bab-10.html"
+                      onclick="openLink(this.dataset.file, 'Modul Ajar Bab 10')"
+                      >Modul Ajar Bab 10</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-inggris/modul-ajar/modul-ajar-bab-11.html"
+                      onclick="openLink(this.dataset.file, 'Modul Ajar Bab 11')"
+                      >Modul Ajar Bab 11</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="submenu-group">
+                <h3><i class="fas fa-user-check"></i> Daftar Hadir Kelas</h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-inggris/daftar-hadir-kelas/daftar-hadir.html"
+                      onclick="openLink(this.dataset.file, 'Daftar Hadir Kelas')"
+                      >Daftar Hadir Kelas</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="submenu-group">
+                <h3><i class="fas fa-chart-bar"></i> Daftar Nilai</h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-inggris/daftar-nilai/daftar-nilai.html"
+                      onclick="openLink(this.dataset.file, 'Daftar Nilai')"
+                      >Daftar Nilai</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-inggris/daftar-nilai/daftar-nilai-kurikulum-merdeka.html"
+                      onclick="openLink(this.dataset.file, 'Daftar Nilai Kurikulum Merdeka')"
+                      >Daftar Nilai Kurikulum Merdeka</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="submenu-group">
+                <h3><i class="fas fa-chalkboard"></i> Jurnal Mengajar</h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-inggris/jurnal-mengajar/jurnal.html"
+                      onclick="openLink(this.dataset.file, 'Jurnal Mengajar')"
+                      >Jurnal Mengajar</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="submenu-group">
+                <h3><i class="fas fa-users"></i> Daftar Hadir</h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-inggris/daftar-hadir/isi-daftar-hadir-siswa.html"
+                      onclick="openLink(this.dataset.file, 'Isi Daftar Hadir Siswa')"
+                      >Isi Daftar Hadir Siswa</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-inggris/daftar-hadir/isi-depan-daftar-hadir-siswa.html"
+                      onclick="openLink(this.dataset.file, 'Isi Depan Daftar Hadir Siswa')"
+                      >Isi Depan Daftar Hadir Siswa</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="submenu-group">
+                <h3><i class="fas fa-calendar-alt"></i> Program Semester</h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-inggris/prosem/prosem.html"
+                      onclick="openLink(this.dataset.file, 'Program Semester')"
+                      >Program Semester</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="submenu-group">
+                <h3><i class="fas fa-calendar-week"></i> Program Tahunan</h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-inggris/prota/prota.html"
+                      onclick="openLink(this.dataset.file, 'Program Tahunan')"
+                      >Program Tahunan</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="submenu-group">
+                <h3><i class="fas fa-clipboard-list"></i> Soal Latihan</h3>
+                <ul class="sub-submenu">
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-inggris/soal-latihan/kisi-kisi-sas.html"
+                      onclick="openLink(this.dataset.file, 'Kisi-kisi SAS')"
+                      >Kisi-kisi SAS</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-inggris/soal-latihan/kisi-kisi-sts.html"
+                      onclick="openLink(this.dataset.file, 'Kisi-kisi STS')"
+                      >Kisi-kisi STS</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-inggris/soal-latihan/sas.html"
+                      onclick="openLink(this.dataset.file, 'SAS')"
+                      >SAS</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-file="files/mata-pelajaran/bahasa-inggris/soal-latihan/sts.html"
+                      onclick="openLink(this.dataset.file, 'STS')"
+                      >STS</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                onclick="backToMenu()"
+              >
+                <i class="fas fa-arrow-left"></i> Kembali
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION: PENGATURAN -->
+        <section id="pengaturanSection" class="form-section">
+          <div class="form-title">
+            <i class="fas fa-sliders-h"></i> Pengaturan Sistem
+          </div>
+
+          <div class="settings-container">
+            <!-- 1. Identitas Sekolah -->
+            <div class="settings-card">
+              <h3><i class="fas fa-school"></i> Identitas Sekolah</h3>
+              <form id="schoolIdentityForm">
+                <div class="form-group">
+                  <label>Nama Sekolah</label>
+                  <input
+                    type="text"
+                    id="settingSchoolName"
+                    class="form-input"
+                    placeholder="Contoh: SDN Pejaten Timur 07"
+                  />
+                </div>
+                <div class="form-group">
+                  <label>Logo Sekolah (Upload File)</label>
+                  <input
+                    type="file"
+                    id="settingLogoFile"
+                    class="form-input"
+                    accept="image/*"
+                  />
+                </div>
+                <div class="form-actions">
+                  <button
+                    type="button"
+                    class="btn btn-primary"
+                    onclick="saveSchoolIdentity()"
+                  >
+                    <i class="fas fa-save"></i> Simpan Identitas
+                  </button>
+                </div>
+              </form>
+            </div>
+
+            <!-- 2. Manajemen Pengguna -->
+            <div class="settings-card">
+              <h3><i class="fas fa-users-cog"></i> Manajemen Pengguna</h3>
+              <form
+                id="addUserForm"
+                style="
+                  margin-bottom: 20px;
+                  border-bottom: 1px solid #eee;
+                  padding-bottom: 20px;
+                "
+              >
+                <div class="form-group">
+                  <label>Username</label>
+                  <input
+                    type="text"
+                    id="newUsername"
+                    class="form-input"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label>Password</label>
+                  <input
+                    type="password"
+                    id="newPassword"
+                    class="form-input"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label>Role</label>
+                  <select id="newRole" class="form-input">
+                    <option value="user">User (Guru)</option>
+                    <option value="admin">Admin</option>
+                  </select>
+                </div>
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  onclick="addUser()"
+                >
+                  <i class="fas fa-user-plus"></i> Tambah User
+                </button>
+              </form>
+
+              <div class="table-responsive">
+                <table class="user-table">
+                  <thead>
+                    <tr>
+                      <th>Username</th>
+                      <th>Password</th>
+                      <th>Role</th>
+                      <th>Aksi</th>
+                    </tr>
+                  </thead>
+                  <tbody id="userTableBody">
+                    <!-- User rows will be populated by JS -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="form-actions"
+            style="
+              margin-top: 30px;
+              border-top: 1px solid #eee;
+              padding-top: 20px;
+            "
+          >
+            <button class="btn btn-secondary" onclick="backToMenu()">
+              <i class="fas fa-arrow-left"></i> Kembali ke Menu Utama
+            </button>
+          </div>
+        </section>
+
+        <!-- Toast Container -->
+        <div id="toast" class="toast">Pesan notifikasi</div>
+      </main>
+    </div>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>
